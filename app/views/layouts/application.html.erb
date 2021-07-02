@@ -35,13 +35,13 @@
                   </li>
 
                   <li>
-                    <%= link_to " Logout", destroy_user_session_path, method:  :delete, class:"fas fa-sign-out-alt nav-link text-light" %>
+                    <%= link_to " logout", destroy_user_session_path, method:  :delete, class:"fas fa-sign-out-alt nav-link text-light" %>
                   </li>
 
                 <% else %>
 
                   <li>
-                    <%= link_to " Home", new_user_registration_path, class:"fas fa-home nav-link text-light" %>
+                    <%= link_to " Home", root_path, class:"fas fa-home nav-link text-light" %>
                   </li>
 
                   <li>
@@ -64,6 +64,9 @@
       </nav>
     </header>
     <main>
+      <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
       <%= yield %>
     </main>
   <footer>
