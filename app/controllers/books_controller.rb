@@ -25,7 +25,7 @@ class BooksController < ApplicationController
     @booka = Book.new
   end
 
-  def destory
+  def destroy
     @book = Book.find(params[:id])
     if @book.destroy
       flash[:notice] = "Book was successfully destroyed"
@@ -52,7 +52,7 @@ class BooksController < ApplicationController
     def correct_user
       @book = Book.find(params[:id])
       if current_user.id != @book.user.id
-        redirect_to root_path
+        redirect_to books_path
       end
     end
 
