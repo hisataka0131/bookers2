@@ -10,40 +10,9 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-        <%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class:"attachment user profile_image fallback" %>
-        <table class="table">
-          <tbody>
-            <tr></tr>
-            <tr>
-              <th>name</th>
-              <th><%= current_user.name %></th>
-            </tr>
-            <tr>
-              <th>introduction</th>
-              <th><%= current_user.introduction %></th>
-            </tr>
-          </tbody>
-        </table>
-        <div class="row">
-          <%= link_to "", edit_user_path(current_user) ,class:"btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{current_user.id}" %>
-        </div>
-
-        <h2 class="mt-3">New book</h2>
-          <%= form_with model: @book do |f| %>
-            <div class="form-group">
-              <label>Title</label>
-              <%= f.text_field :title, class:"form-control book_title" %>
-            </div>
-
-            <div class="form-group">
-              <label>Opinion</label>
-              <%= f.text_area :body, class:"form-control book_body" %><br>
-            </div>
-
-            <div class="form-group">
-              <%= f.submit 'Create Book', class:"btn btn-success" %>
-            </div>
-          <% end %>
+        <%= render partial: 'layouts/user', locals: {user: current_user, id: current_user.id  }  %>
+      <h2 class="mt-3">New book</h2>
+        <%= render partial: 'layouts/postbook', locals: {book: @book, bname: 'Create Book'}  %>
 
     </div>
     <div class="col-md-8 offset-md-1">
